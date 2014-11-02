@@ -43,6 +43,197 @@ var app = {
         "otherMonthly":0,
         "otherYearly":0
     },
+
+    responses: {
+        losing: function(sav){
+            return "You are currently spending more than you are earning. You are" +
+                " losing <span class='blueBolded'>$" + sav + "</span> per year. That works out" +
+                " to be <span class='blueBolded'>$" + (sav/12).toFixed(2) + "</span> per month. " +
+                "It is possible that you are being too ambitious about your retirement savings, but more" +
+                " likely, you should look to find areas where you are overspending.";
+        },
+        saving: function(sav){
+            return "You are currently saving <span class='blueBolded'>$" + sav + "</span> per year. That works out" +
+                " to be <span class='blueBolded'>$" + (sav/12).toFixed(2) + "</span> per month. " +
+                "Keep in mind, this is in addition to your retirement savings. You can visit our " +
+                "<a id='intCalcLink' href='InterestCalc.html'>interest calculator</a> to find out how much you can accrue" +
+                " over a given amount of time. You may want to calculate ";
+        },
+        breakingEven: function(sav){
+            return "breaking even " + sav;
+        },
+        respond: function(func, sav) {
+            var additionalResponse = '';
+
+            if(inputs["alcohol"] > 200) {
+                additionalResponse += "It looks like you are spending <span class='redBolded'>$" +
+                    inputs["alcohol"]*12 + "</span> on alcohol every year.";
+            }
+
+            document.getElementById("response").innerHTML = responses[func](sav) + additionalResponse;
+        }
+    },
+
+    getResponse: function(){
+        var savings = calculateSavings();
+        if (savings > 0) {
+            responses.respond("saving", savings.toFixed(2));
+        } else if (savings < 0) {
+            responses.respond("losing", savings.toFixed(2));
+        } else if (savings == 0) {
+            responses.respond("breakingEven", savings.toFixed(2));
+        }
+    },
+
+    updateInputs: function() {
+        for (var prop in inputs) {
+            if (inputs.hasOwnProperty(prop)&& typeof inputs[prop] === "number" && document.getElementById(prop) != null){
+                if (document.getElementById(prop).value) {
+                    inputs[prop] = parseInput(document.getElementById(prop).value);
+                } else {
+                    inputs[prop] = 0;
+                }
+            }
+        }
+        inputs["property"] = document.getElementById("property").options[document.getElementById("property").selectedIndex].value;
+    },
+
+    calculateSavings: function(){
+
+        var savings = 0;
+        updateInputs();
+        savings += inputs["preTaxSalary"];
+        savings -= inputs["taxDeductibles"];
+        savings *= (1-(inputs["averageTaxRate"] /100));
+        if (inputs["property"] == "buy"){
+            savings -= (12*inputs["mortgage"]);
+            savings -= (12*inputs["condoFees"]);
+            savings -= (inputs["propertyTax"]);
+        } else {
+            savings -= (12*inputs["rentCost"]);
+        }
+        if (inputs["car"]) {
+            savings -= 12 * (inputs["carInsurance"] +
+                inputs["carPayments"] +
+                inputs["gas"]);
+        }
+        savings -=
+            12*(inputs["otherLoans"] +
+            inputs["studentLoans"] +
+            inputs["otherInsurance"] +
+            inputs["utilities"] +
+            inputs["medInsurance"] +
+            inputs["cablePhoneInt"] +
+            inputs["groceries"] +
+            inputs["dinners"] +
+            inputs["alcohol"] +
+            inputs["gifts"] +
+            inputs["clothing"] +
+            inputs["medications"] +
+            inputs["entertainment"] +
+            inputs["otherMonthly"]) +
+            inputs["otherYearly"];
+        if (inputs["pet"]) {
+            savings -= 12 * (inputs["vetBills"] +
+                inputs["petFood"]);
+        }
+        savings -= inputs["tuition"];
+
+        return savings;
+    }
+
+    function estimateTaxRate(){
+        updateInputs();
+        var afterTaxSalary = inputs["preTaxSalary"] - inputs["taxDeductibles"];
+        console.log(afterTaxSalary);
+        if (afterTaxSalary >= 300000) {
+            inputs["averageTaxRate"] = 40;
+        } else if (afterTaxSalary >= 200000) {
+            inputs["averageTaxRate"] = 35;
+        } else if (afterTaxSalary >= 136000) {
+            inputs["averageTaxRate"] = 30;
+        } else if (afterTaxSalary <= 10000) {
+            inputs["averageTaxRate"] = 1;
+        } else if (afterTaxSalary <= 20000) {
+            inputs["averageTaxRate"] = (((afterTaxSalary - 10000)/10000))*0.1*100;
+        } else {
+            inputs["averageTaxRate"] = (((afterTaxSalary - 40000)/10000)*0.015 + 0.16)*100;
+        }
+        document.getElementById("averageTaxRate").value = inputs["averageTaxRate"].toFixed(0);
+    }
+
+    function changeForm(){
+        var rentOrBuy = document.getElementById("property");
+        var valueOf = rentOrBuy.options[rentOrBuy.selectedIndex].value;
+        var eltArray;
+        var len;
+        if (valueOf == "rent"){
+            eltArray = document.getElementsByClassName("buy");
+            len = eltArray.length;
+            for (var i = 0; i<len;i++) {
+                eltArray[i].style.display = "none";
+            }
+            eltArray = document.getElementsByClassName("rent");
+            len = eltArray.length;
+            for (var i = 0; i<len;i++) {
+                eltArray[i].style.display = "block";
+            }
+        } else if (valueOf == "buy") {
+            eltArray = document.getElementsByClassName("buy");
+            len = eltArray.length;
+            for (var i = 0; i<len;i++) {
+                eltArray[i].style.display = "block";
+            }
+            eltArray = document.getElementsByClassName("rent");
+            len = eltArray.length;
+            for (var i = 0; i<len;i++) {
+                eltArray[i].style.display = "none";
+            }
+        } else {
+            console.log("error");
+        }
+    }
+
+    function changeClassDisplay(cssClass, display){
+        var eltArray;
+        eltArray = document.getElementsByClassName(cssClass);
+        len = eltArray.length;
+        for (var i = 0; i<len;i++) {
+            eltArray[i].style.display = display;
+        }
+        if (display == "none") {
+            inputs[cssClass] = false;
+        } else {
+            inputs[cssClass] = true;
+        }
+    }
+
+    function editCarFields(display){
+        var eltArray;
+        eltArray = document.getElementsByClassName("car");
+        len = eltArray.length;
+        for (var i = 0; i<len;i++) {
+            eltArray[i].style.display = display;
+        }
+        if (display == "none") {
+            inputs["car"] = false;
+        } else {
+            inputs["car"] = true;
+        }
+    }
+    function editPetFields(display){
+        var eltArray;
+        eltArray = document.getElementsByClassName("pet");
+        len = eltArray.length;
+        for (var i = 0; i<len;i++) {
+            eltArray[i].style.display = display;
+        }
+        if (display == "none") {
+            inputs["pet"] = false;
+        } else {
+            inputs["pet"] = true;
+        }
+    }
 }
 var inputs = {
     "preTaxSalary":0,
@@ -134,11 +325,6 @@ function updateInputs() {
 
 }
 function calculateSavings(){
-    /*
-     for (var prop in inputs){
-
-     }
-     */
 
     var savings = 0;
     updateInputs();
