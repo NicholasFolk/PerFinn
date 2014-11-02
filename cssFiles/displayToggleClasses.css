@@ -1,0 +1,38 @@
+/* HIDE AND SHOW TOGGLE CSS: */
+
+/* rent or buy classes must be placed directly under the page they are on */
+.one {
+    display: block;
+}
+.rent{
+    display: block;
+}
+.buy{
+    display: none;
+}
+/* rent or buy classes must be placed directly under the page they are on */
+.two {
+    display: none;
+}
+.car {
+    display: none;
+}
+.three {
+    display: none;
+}
+.four {
+    display: none;
+}
+.five {
+    display: none;
+}
+.pet {
+    display: none;
+}
+.begin{
+    display: none;
+}
+.end {
+   display: block;
+}
+

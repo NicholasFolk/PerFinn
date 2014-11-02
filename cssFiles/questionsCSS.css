@@ -1,0 +1,68 @@
+.question{
+    height: 50px;
+    margin: 2px;
+    padding: 2px;
+    width: 384px;
+}
+
+.quesText {
+    margin: 2px;
+    padding: 2px;
+    display: block;
+    float: left;
+    width: 180px;
+    height: 42px;
+
+}
+.quesText p {
+    margin: 2px;
+    padding: 2px;
+    text-align: right;
+    color: white;
+
+
+}
+.userAnswer{
+    width: 188px;
+    margin: 2px;
+    padding: 2px;
+    display: block;
+    float: left;
+}
+.userAnswer p{
+    margin: 2px;
+    padding: 2px;
+    color: white;
+}
+.dollar{
+    margin:2px;
+    padding:2px;
+}
+.dollar input {
+    border: none;
+    width: 132px;
+    height: 21px;
+    margin:2px;
+    padding: 4px;
+    font-size: 12px;
+}
+#estimate {
+    border:none;
+    color:white;
+    padding:0px;
+    margin:0px;
+    position: relative;
+    top: -8px;
+    left:18px;
+
+}
+#estimate:hover{
+    cursor: pointer;
+}
+#estimate:active{
+    color:#548ff4;
+}
+.dollar{
+    font-family: helvetica;
+}
+/* #FFAA00 */

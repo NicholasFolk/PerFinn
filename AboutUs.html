@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>About PerFinn</title>
+    <!-- Site wide links and scripts -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Nicholas Folk">
+    <meta name="title" content="Perfinn Calculators">
+    <meta name="description" content="Perfinn Calculators are designed to be simple, easy to use tools to help you gauge your personal finance situation with greater accuracy.">
+    <meta property="og:image" content="images/Perfinn.jpg" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <link href="cssFiles/PerfinnGeneralCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/DivCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/questionsCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/tooltipsCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/displayToggleClasses.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/backgroundColorScheme.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/testBackgrounds.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/introBox.css" rel="stylesheet" type="text/css" />
+    <script src="javascriptFiles/buttonHandling.js"></script>
+    <script src="javascriptFiles/PerfinnGeneralNonRefactored.js"></script>
+    <script src="backend/Util.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "00988e67-090a-446a-91f0-7fbcefa9161a", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+    <!--Specific to this page -->
+    <link href="cssFiles/aboutUs.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="introBox" onclick="closeWelcome()">
+</div>
+<div id="introText">
+    <p>
+        <span style="font-size:30px;">W</span>elcome to the PerFinn interest calculator! Please bear with us
+        as we are still working out the kinks. We would love to hear your suggestions on
+        how to improve the website, or if you experience any erroneous behaviour. We would also love
+        to hear from you if you just want to say hello as well! Regretfully, we may not be
+        able to respond to everyone, but we do take the time to read every message.
+        <br/><br/>
+        Enjoy your visit!
+        <br/>
+        <button id="begin" onclick="closeWelcome()">Begin!</button>
+    </p>
+</div>
+<div id="container">
+    <div id="header">
+        <div id="logo" class="headerSections">
+            <h1><a href="PerfinnIndex.html" style="text-decoration: none; color:inherit;">PerFinn</a></h1>
+        </div>
+        <div id="titleTag" class="headerSections">
+            <h2>How much are <strong><em>you</em></strong> saving?</h2>
+        </div>
+        <div id="myProfile" class="headerSections">
+            <p><a class="menu" href="PerfinnIndex.html">Main</a></p>
+            <p><a class="menu" href="InterestCalc.html">Interest Calculator</a></p>
+            <p><a class="menu" href="#">About Us</a></p>
+            <p><a class="menu" onclick="showWelcome()">Beta</a></p>
+        </div>
+
+    </div>
+    <div id="contents">
+        <div id="qnaContainer">
+            <div id="innerQnaContainer">
+                <p id="aboutUs">
+                    Thanks for using PerFinn! We are committed to providing a simple, easy
+                    to use calculator to help you understand your personal finances. It is
+                    easy to overestimate or underestimate monthly and yearly expenses. We
+                    hope our calculator helps you track these expenses with some degree of
+                    accuracy.
+                    <br/>
+                    Please let us know if you have any suggestions for PerFinn. We may not
+                    be able to respond to every message, but we sincerely appreciate
+                    your feedback!
+
+                </p>
+            </div>
+            <div id="pageControllers">
+                <!-- LEAVE THIS IN CASE WE WANT TWO PAGES FOR ABOUT US
+                <div id="leftButton">
+                    <button class="pageButton begin" onclick="movePage('back')"><</button>
+                </div>
+                <div id="pageNumDisplay">
+                    <p>1 / 2</p>
+                </div>
+                <div id="rightButton">
+                    <button class="pageButton end" onclick="movePage('forward')"> > </button>
+                </div>-->
+            </div>
+        </div>
+        <div id="responseContainer">
+            <div id="response">
+                <!--<form action="http://perfinn.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+
+                </form>-->
+                <!--<script src="http://www.emailmeform.com/builder/forms/jsform/749ufdY04QRcLOeay4V2" type="text/javascript"></script>-->
+                <!--<div style="margin-top:4px;text-align:center">-->
+                    <!--<div id='emf_advertisement'>-->
+                        <!--<font face="Verdana" size="2" color="#000000">Powered by</font>-->
+                        <!--<span style="position: relative; padding-left: 3px; bottom: -5px;">-->
+                            <!--<img src="//assets.emailmeform.com/images/footer-logo.png?RU1GLTAyLTE5LTEwOTky" />-->
+                        <!--</span>-->
+                        <!--<font face="Verdana" size="2" color="#000000">EMF </font>-->
+                        <!--<a style="text-decoration:none;" href="http://www.emailmeform.com/" target="_blank">-->
+                            <!--<font face="Verdana" size="2" color="#000000">HTML Contact Form</font>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <a id='anchor_749ufdY04QRcLOeay4V2' href='http://www.emailmeform.com/builder/form/749ufdY04QRcLOeay4V2'>Fill out my form!</a><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+                <script type="text/javascript">
+                    if (typeof jQuery == 'undefined'){
+                        document.write(unescape("%3Cscript src='http://www.emailmeform.com/builder/js/jquery-1.4.4.min.js' type='text/javascript'%3E%3C/script%3E"));
+                    }
+                </script>
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+                <script type="text/javascript">
+                    if (typeof $.ui == 'undefined'){
+                        document.write(unescape("%3Cscript src='http://www.emailmeform.com/builder/js/jquery-ui-1.7.2.custom.min.js' type='text/javascript'%3E%3C/script%3E"));
+                    }
+                </script>
+                <link rel="stylesheet" type="text/css" href="http://www.emailmeform.com/builder/styles/dynamic.php?t=post" />
+                <script type="text/javascript" src="http://www.emailmeform.com/builder/js/dynamic.php?t=post&t2=0&use_CDN=true"></script>
+                <script>$(function(){$('#anchor_749ufdY04QRcLOeay4V2').colorbox({width:'75%', height:'75%', iframe:true});})</script>
+
+            </div>
+            <div id="calculateContainer">
+                <button id="calculate" onclick="submitMessage()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="shareButtons" style="float:left;">
+            <span class='st_facebook_large' displayText='Facebook'></span>
+            <span class='st_twitter_large' displayText='Tweet'></span>
+            <span class='st_linkedin_large' displayText='LinkedIn'></span>
+            <span class='st_reddit_large' displayText='Reddit'></span>
+            <span class='st_pinterest_large' st_img="http://perfinn.com/images/PerfinnLogo.png" displayText='Pinterest'></span>
+            <span class='st_tumblr_large' displayText='Tumblr'></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+#introBox{
+    margin: 2px;
+    padding: 0;
+    position: absolute;
+    height: 100%;
+    width:  100%;
+    background-color: black;
+    z-index: 1;
+    opacity: 0.5;
+    box-shadow: -5px -5px 5px black;
+    display:none;
+}
+#introText{
+    position: absolute;
+    top: 20%;
+    left:20%;
+    margin: 2px;
+    padding: 2px;
+    height: auto;
+    width: 60%;
+    background-color: white;
+    opacity: 1;
+    z-index:2;
+    box-shadow: 10px 10px 10px black;
+    display:none;
+
+}
+#introText p{
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 26px;
+    color: #548ff4;
+}
+#begin {
+    margin: 2px;
+    padding: 2px;
+    width: 116px;
+    height: 46px;
+    border: none;
+    color: white;
+    background-color: #FFAA00;
+    font-size: 14px;
+
+}
+#begin:active{
+    border: 2px solid #548ff4;
+    color: #FFAA00;
+    background-color: white;
+}
+
+#resetTextBox{
+    position: absolute;
+    top: 25%;
+    left:25%;
+    margin: 2px;
+    padding: 2px;
+    height: auto;
+    width: 50%;
+    min-width: 420px;
+    background-color: white;
+    opacity: 1;
+    z-index:2;
+    box-shadow: 10px 10px 10px black;
+    display:none;
+}
+#resetCancel{
+    margin: 15px;
+    margin-right: 0;
+    padding: 2px;
+    width: 116px;
+    height: 46px;
+    display:block;
+    float: right;
+    border: none;
+    color: #eebb00;
+    border: 2px solid #DDDDDD;
+    background-color: white;
+    font-size: 14px;
+}
+#resetCancel:active{
+    border: 2px solid #548ff4;
+
+}
+#confirmReset{
+    margin: 15px;
+    padding: 2px;
+    width: 116px;
+    height: 46px;
+    display:block;
+    float: right;
+    border: none;
+    color: white;
+    background-color: #eebb00;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #606060;
+
+
+}
+#confirmReset:active{
+    border: 2px solid #548ff4;
+    color: #eebb00;
+    background-color: white;
+}
+#resetTextBox p{
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 26px;
+    color: #548ff4;
+}

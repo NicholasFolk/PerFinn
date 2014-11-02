@@ -1,0 +1,11 @@
+1) Refactor to take out global variables:  test
+
+2) Fix buttons on every page
+
+3) Get @perfinn working and new Contact form to be sent there
+
+4) Add ads (direct ad sales?)
+
+5) Add cookies to save last filled in form
+
+6) Add login (might have to learn Node/Mean stack and migrate to amazon EC2)

@@ -1,0 +1,55 @@
+/* Background */
+#contents {
+    background-color: darkblue;
+}
+#estimate {
+    background-color: transparent;
+}
+
+/* These should be the same */
+h1{
+    color: #eebb00;
+    /*color: #003366;*/
+    text-shadow: 2px 2px 0px #606060;
+}
+#calculate{
+    background-color: #eebb00;
+    /*background-color: #003366;*/
+    color: white;
+    text-shadow: 1px 1px 1px #606060;
+
+}
+/* Tooltip */
+.toolLink {
+    background-color: #eebb00;
+    /*background-color: #003366;*/
+    color: white;
+    /*border: 1px solid #eebb00;*/
+    text-shadow: 1px 1px 1px #606060;
+}
+.tooltip{
+    text-shadow: 0 0 0 #000000;
+    font-weight: normal;
+
+}
+
+.blueBolded {
+    font-size: 20px;
+    color: mediumblue;
+}
+button{
+    cursor:pointer;
+}
+#reset{
+    color: #003366;
+}
+h2,p{
+    color: mediumblue;
+
+}
+h2{
+    padding-top: 28px;
+    font-size: 22px;
+    font-weight: bolder;
+    text-shadow: 1px 1px 2px silver;
+}

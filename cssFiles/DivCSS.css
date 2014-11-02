@@ -1,0 +1,201 @@
+#container {
+    margin: 2px auto;
+    padding: 2px;
+    width: 800px;
+    z-index: -1;
+    /*background-color: lightblue;*/
+}
+#header {
+    margin: 2px;
+    padding: 2px;
+    height: 80px;
+    width: auto;
+    background-color: white;
+
+}
+.headerSections{
+    margin: 2px;
+    padding: 2px;
+    height: 72px;
+    /*background-color: lightblue;*/
+    display: block;
+    float: left;
+}
+#logo{
+    margin: 2px;
+    padding: 2px;
+    width: 140px;
+}
+#titleTag{
+    margin: 2px;
+    padding: 2px;
+    width: 348px;
+}
+#myProfile{
+    margin: 2px;
+    padding: 2px;
+    width: 280px;
+}
+#myProfile p{
+    margin: 2px;
+    padding: 2px;
+    text-align: right;
+}
+
+#contents {
+    margin: 2px;
+    padding: 2px;
+    height: 480px;
+    width: 792px;
+    background-color: #DDDDDD;
+    border-radius: 30px;
+}
+#responseContainer, #qnaContainer{
+    margin: 10px;
+    padding: 2px;
+    height: 456px;
+    display:block;
+    float: left;
+}
+#qnaContainer{
+    width: 400px;
+}
+#innerQnaContainer{
+    margin: 2px;
+    padding: 2px;
+    width: 392px;
+    height: 382px;
+    display:block;
+    float: left;
+}
+.radioContainer{
+    width:142px;
+    height:18px;
+    padding: 2px;
+    margin: 2px 2px 2px 16px;
+    display: block;
+    float:left;
+    color: white;
+}
+
+#pageControllers{
+    height: 58px;
+    margin: 2px;
+    padding: 2px;
+    display:block;
+    float: left;
+}
+#leftButton, #rightButton, #pageNumDisplay {
+    display:block;
+    float: left;
+    margin: 2px;
+    padding: 2px;
+    height: 50px;
+    width: 120px;
+}
+#leftButton, #rightButton {
+}
+#pageNumDisplay {
+    width: 128px;
+    text-align: center;
+}
+#pageNumDisplay p{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 28px;
+    color: white;
+}
+.pageButton{
+    margin: 2px auto;
+    padding: 2px;
+    height: 46px;
+    width: 76px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bolder;
+    font-size: 30px;
+    color: mediumblue;
+    display:block;
+    text-align: center;
+}
+.pageButton:hover{
+    cursor: pointer;
+}
+.pageButton:active{
+    color: white;
+    background-color: #eebb00;
+}
+#responseContainer{
+    width: 340px;
+    background-color: white;
+    border-radius: 20px;
+
+}
+#response{
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    height: 360px;
+    font-family: helvetica;
+    color: darkgray;
+    font-size: 16px;
+    font-weight: lighter;
+    text-align: justify;
+    line-height: 22px;
+}
+#response p{
+    margin: 5px;
+    padding: 5px;
+}
+
+#calculateContainer{
+    margin: 2px;
+    padding: 2px;
+    width: 332px;
+    height: 50px;
+}
+#reset{
+    margin: 2px;
+    margin-left: 10px;
+    padding: 2px;
+    width: 116px;
+    height: 46px;
+    display:block;
+    float: left;
+    border: none;
+    color: #eebb00;
+    border: 2px solid #DDDDDD;
+    background-color: white;
+    font-size: 14px;
+}
+#reset:active{
+    border: 2px solid #548ff4;
+
+}
+#calculate{
+    margin: 2px;
+    margin-right: 10px;
+    padding: 2px;
+    width: 116px;
+    height: 46px;
+    display:block;
+    float: right;
+    border: none;
+    color: white;
+    background-color: #eebb00;
+    font-size: 14px;
+
+}
+#calculate:active{
+    border: 2px solid #548ff4;
+    color: #eebb00;
+    background-color: white;
+}
+#footer {
+    margin: 2px;
+    padding: 2px;
+    height: 80px;
+    text-align: center;
+    background-color: white;
+}

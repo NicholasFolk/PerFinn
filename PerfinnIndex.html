@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>The Personal Finance Calculator by PerFinn</title>
+    <!-- Site wide links and scripts -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Nicholas Folk">
+    <meta name="title" content="Perfinn Calculators">
+    <meta name="description" content="Perfinn Calculators are designed to be simple, easy to use tools to help you gauge your personal finance situation with greater accuracy.">
+    <meta property="og:image" content="images/Perfinn.jpg" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <link href="cssFiles/PerfinnGeneralCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/DivCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/questionsCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/tooltipsCSS.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/displayToggleClasses.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/backgroundColorScheme.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/testBackgrounds.css" rel="stylesheet" type="text/css" />
+    <link href="cssFiles/introBox.css" rel="stylesheet" type="text/css" />
+    <script src="javascriptFiles/buttonHandling.js"></script>
+    <script src="javascriptFiles/PerfinnGeneralNonRefactored.js"></script>
+    <script src="backend/Util.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "00988e67-090a-446a-91f0-7fbcefa9161a", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+</head>
+<body>
+<div id="introBox" onclick="closeDialogs()">
+</div>
+<div id="introText">
+    <p>
+    <span style="font-size:30px;">W</span>elcome to PerFinn: Your Simple Personal Finance Calculator!
+    Please bear with us as we are still working out the kinks. We would love to hear your suggestions
+    on how to improve the website, or if you experience any erroneous behaviour. We would also love
+    to hear from you if you just want to say hello as well! Regretfully, we may not be
+    able to respond to everyone, but we do take the time to read every message.
+    <br/><br/>
+    Enjoy your visit!
+    <br/>
+    <button id="begin" onclick="closeWelcome()">Begin!</button>
+    </p>
+</div>
+<div id="resetTextBox">
+    <p> Are you sure you want to reset? <br/>All fields will be returned to default values
+        and any other progress will be erased.
+        <br/>
+        <button id="confirmReset" onclick="reset()">Reset</button>
+        <button id="resetCancel" onclick="closeResetDialog()">Cancel</button>
+    </p>
+</div>
+<div id="container">
+    <div id="header">
+        <div id="logo" class="headerSections">
+            <h1><a href="PerfinnIndex.html" style="text-decoration: none; color:inherit;">PerFinn</a></h1>
+        </div>
+        <div id="titleTag" class="headerSections">
+            <h2>How much are <strong><em>you</em></strong> saving?</h2>
+        </div>
+        <div id="myProfile" class="headerSections">
+            <p><a class="menu" href="#">Main</a></p>
+            <p><a class="menu" href="InterestCalc.html">Interest Calculator</a></p>
+            <p><a class="menu" href="AboutUs.html">About Us</a></p>
+            <p><a class="menu" onclick="showWelcome()">Beta</a></p>
+        </div>
+    </div>
+    <div id="contents">
+        <div id="qnaContainer">
+            <div id="innerQnaContainer">
+                <div class="question one">
+                    <div class="quesText">
+                        <p style="padding-top: 10px;">Salary (before taxes):</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="preTaxSalary" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                                <span class="tooltip">
+                                    This includes all bonuses and equity received.
+                                </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question one">
+                    <div class="quesText">
+                        <p>Tax-Free Retirement Contributions:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="taxDeductibles" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                It is recommended to put 18% of your salary towards your retirement savings plan.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question one">
+                    <div class="quesText">
+                        <p style="padding-top: 8px;">Average Tax Rate:</p>
+                    </div>
+                    <div class="userAnswer" style="height:48px;padding-top:0px;">
+                        <p class="dollar">%<input type="text" id="averageTaxRate" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Please input your average tax rate as a whole percentage. For instance, if your average tax rate is 20%, please input "20".
+                                If you don't know your tax rate, then you may click the Estimate button. Note this might not be accurate for your jurisdiction.
+                            </span>
+                            </a>
+                        </p>
+                        <button id="estimate" onclick="estimateTaxRate()">Estimate</button>
+                    </div>
+                </div>
+                <div class="question one">
+                    <div class="quesText" id="propertyQuestion">
+                        <p style="padding-top:0px;">Do you own or do you rent your property?</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">
+                        <form action="">
+                            <select name="prop" id="property" onchange="changeForm()">
+                                <option value="rent">Rent</option>
+                                <option value="buy">Own</option>
+                            </select>
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                If you don't pay for any living expenses, please choose rent and place 0 inside the next input box.
+                            </span>
+                            </a>
+                        </form>
+                        </p>
+                    </div>
+                </div>
+                <div class="question one rent">
+                    <div class="quesText rent">
+                        <p>Monthly Rental Payments:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="rentCost" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                The value you pay each month for living expenses.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question one buy">
+                    <div class="quesText buy">
+                        <p>Monthly Mortgage Payments:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="mortgage" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                The value you pay each month for living expenses.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question one buy">
+                    <div class="quesText buy">
+                        <p>Condo or Strata fees:</p>
+                    </div>
+                    <div class="userAnswer buy">
+                        <p class="dollar">$ <input type="text" id="condoFees" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Your monthly strata or condo fees. You may also add HOA fees here.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question one buy">
+                    <div class="quesText buy">
+                        <p>Yearly Property Tax:</p>
+                    </div>
+                    <div class="userAnswer buy">
+                        <p class="dollar">$ <input type="text" id="propertyTax" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Your yearly property tax amount.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question two">
+                    <div class="quesText">
+                        <p>Medical Insurance:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="medInsurance" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Your monthly medical insurance plan amount.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question two">
+                    <div class="quesText">
+                        <p>Monthly Medication Bills:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="medications" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Though not all medications are purchased monthly, please try your best to find
+                                your average monthly medication totals.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question two">
+                    <div class="quesText" id="carQuestion">
+                        <p style="padding-top:0px;">Do you regularly use a vehicle?</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">
+                        <form action="" id="carResponse">
+                            <div class="radioContainer">
+                                <input id="carY" type="radio" name="carChoice" onclick="editCarFields('block')" class="radio" /> Yes
+                                <input id="carN" type="radio" name="carChoice" onclick="editCarFields('none')" style="position:relative;left:14px;" class="radio" checked />&nbsp;&nbsp;&nbsp; No
+                            </div>
+                            <a href="#" class="toolLink" style="position:relative;top:4px;">?
+                                <span class="tooltip">
+                                    Whether you own, rent regularly, lease to own, etc.
+                                </span>
+                            </a>
+                        </form>
+                        </p>
+                    </div>
+                </div>
+                <div class="question two car">
+                    <div class="quesText car">
+                        <p>Monthly Lease Payments:</p>
+                    </div>
+                    <div class="userAnswer car">
+                        <p class="dollar">$ <input type="text" id="carPayments" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                How much you pay in car insurance per month.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question two car">
+                    <div class="quesText car">
+                        <p>Car Insurance:</p>
+                    </div>
+                    <div class="userAnswer car">
+                        <p class="dollar">$ <input type="text" id="carInsurance" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                How much you pay in car insurance per month.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question two car">
+                    <div class="quesText car">
+                        <p>Monthly Gas:</p>
+                    </div>
+                    <div class="userAnswer car">
+                        <p class="dollar">$ <input type="text" id="gas" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                The amount you spend on gas for your vehicle.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question three">
+                    <div class="quesText">
+                        <p>Yearly Tuition Cost (if student):</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="tuition" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Total Cost of tuition for the year
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question two">
+                    <div class="quesText">
+                        <p>Other Monthly Insurance:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="otherInsurance" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                How much you pay in all other insurance payments each month. This could be
+                                home insurance, travel insurance, etc.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question three">
+                    <div class="quesText">
+                        <p>Student Loan Payments:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="studentLoans" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                The amount you pay per month on all student loans
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question three">
+                    <div class="quesText">
+                        <p>Other Loan Payments:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="otherLoans" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                The amount you pay per month on all other loans
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question three">
+                    <div class="quesText">
+                        <p>Monthly Utility payments:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="utilities" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Your water, electricity, heat bills per month.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question three">
+                    <div class="quesText">
+                        <p style="padding-top:0px;">Monthly Cable, Phone, Internet Payments:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="cablePhoneInt" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Please add your monthly cable, phone, and internet bills together.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question three">
+                    <div class="quesText">
+                        <p>Monthly Grocery Bills:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="groceries" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Your monthly total of all grocery shopping purchases.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question four">
+                    <div class="quesText">
+                        <p style="padding-top:0px;">Amount Spent Eating Out Per Month:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="dinners" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                All purchases at restaurants in an average month.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question four">
+                    <div class="quesText">
+                        <p style="padding-top:0px;">Amount Spent On Alcohol Per Month:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="alcohol" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Your monthly purchases at liquor stores, bars, pubs, nightclubs, and you may wish to add misc. expenses (like cabs to and from bars).
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question four">
+                    <div class="quesText">
+                        <p style="padding-top:0px;">Amount Spent On Gifts Per Month:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="gifts" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                You are likely to purchase birthday, wedding, anniversary gifts for those close to you.
+                                If you are unsure, a good estimate is one gift per month. Place the average amount you spend
+                                on a gift. Also keep in mind that you may spend more on those closest to you.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question four">
+                    <div class="quesText">
+                        <p>Amount Spent on Clothing Per Month:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="clothing" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Any clothing you purchase.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question four">
+                    <div class="quesText">
+                        <p>Amount Spent on Entertainment Per Month:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="entertainment" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                This includes both, things like going to movies, comedy clubs, sporting events,
+                                as well as renting or purchasing movies, subscriptions to netflix, hulu, and the like.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question five">
+                    <div class="quesText">
+                        <p style="padding-top:10px;">Do you own a pet?</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">
+                        <form action="" id="petResponse">
+                            <div class="radioContainer">
+                                <input type="radio" id="petY" name="petChoice" onclick="editPetFields('block')" class="radio" /> Yes
+                                <input type="radio" id="petN" name="petChoice" onclick="editPetFields('none')" style="position:relative;left:14px;" class="radio" checked />&nbsp;&nbsp;&nbsp; No
+                            </div>
+                            <a href="#" class="toolLink" style="position:relative;top:4px;">?
+                                <span class="tooltip">
+                                    If you do not own a pet, you may proceed to the next page, or click calculate if you are finished.
+                                </span>
+                            </a>
+                        </form>
+                        </p>
+                    </div>
+                </div>
+                <div class="question five pet">
+                    <div class="quesText">
+                        <p>Monthly Pet Food And Accessory Bills:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="petFood" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Total amount spent on food for your pet, as well as accessories like treats, toys, and disposable waste bags.
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question five pet">
+                    <div class="quesText">
+                        <p>Yearly Veterinarian Bills:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="vetBills" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Any additional MONTHLY expenses that were not covered by any other fields in this form
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question five">
+                    <div class="quesText">
+                        <p>Other Monthly Expenses:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="otherMonthly" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                Any additional MONTHLY expenses that were not covered by any other fields in this form
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="question five">
+                    <div class="quesText">
+                        <p>Other Yearly Expenses:</p>
+                    </div>
+                    <div class="userAnswer">
+                        <p class="dollar">$ <input type="text" id="otherYearly" placeholder="0" />
+                            <a href="#" class="toolLink">?
+                            <span class="tooltip">
+                                This could be a new large home appliance, furniture, a vacation,
+                            </span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="pageControllers">
+                <div id="leftButton">
+                    <button class="pageButton begin" onclick="movePage('back', 'PerfinnIndex')">&lt;</button>
+                </div>
+                <div id="pageNumDisplay">
+                    <p>1 / 5</p>
+                </div>
+                <div id="rightButton">
+                    <button class="pageButton end" onclick="movePage('forward', 'PerfinnIndex')"> &gt; </button>
+                </div>
+            </div>
+        </div>
+        <div id="responseContainer">
+            <div id="response">
+                <noscript style="font-size:22px;color:red;
+                background-color: black;">Unfortunately, you need Javascript enabled to use this web application.
+                    Please enable Javascript then reload the page. Sorry for the inconvenience!</noscript>
+                <p></p>
+            </div>
+            <div id="calculateContainer">
+                <button id="reset" onclick="openResetDialog()">Reset</button>
+                <button id="calculate" onclick="getResponse()">Calculate</button>
+            </div>
+        </div>
+
+    </div>
+    <div id="footer">
+        <div id="shareButtons" style="float:left;">
+            <span class='st_facebook_large' displayText='Facebook'></span>
+            <span class='st_twitter_large' displayText='Tweet'></span>
+            <span class='st_linkedin_large' displayText='LinkedIn'></span>
+            <span class='st_reddit_large' displayText='Reddit'></span>
+            <span class='st_pinterest_large' st_img="http://perfinn.com/images/PerfinnLogo.png" displayText='Pinterest'></span>
+            <span class='st_tumblr_large' displayText='Tumblr'></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
