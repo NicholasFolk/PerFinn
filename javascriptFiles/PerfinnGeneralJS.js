@@ -1,6 +1,11 @@
 
-(function closure(){
-    document.onload(setUp());
+//= require common/library.js
+
+//= require module/PerFinnApp.js
+
+(function(){
+
+    PerFinnApp.init();
 
 
     function setUp(){
@@ -9,45 +14,6 @@
         setUpPageButtons(jsonArray);
         createInputs();
     }
-
-//    var inputs = {};
-//
-//    function createInputs(){
-//        inputs.preTaxSalary = createInput(0, false, 1, true, "Salary (before taxes):");
-//        inputs.taxDeductibles = createInput(0, false, 1, true, "Tax-Free Retirement Contributions:");
-//        inputs.averageTaxRate = createInput(0, false, 1, true, "Average Tax Rate:");
-//        inputs.property = createInput(0, "rentOrOwn", 1, true, "Do you own or do you rent your property?");
-//        inputs.rentOrMortgage = createInput(0, false, 1, true, "Monthly Mortgage Payments:");
-//        inputs.propertyTax = createInput(0, false, 1, true, "buy", "Condo or Strata fees:");
-//        inputs.condoFees = createInput(0, false, 1, true, "buy", "");
-//        inputs.medInsurance = createInput(0, false, 2, true, "");
-//        inputs.car = createInput(0, "car", 2, true, "");
-//        inputs.carInsurance = createInput(0, false, 2, true, "");
-//        inputs.carPayments = createInput(0, false, 2, true, "");
-//        inputs.gas = createInput(0, false, 2, true, "");
-//        inputs.otherLoans = createInput(0, false, 2, true, "");
-//        inputs.cablePhoneInt = createInput(0, false, 3, true, "");
-//        inputs.utilities = createInput(0, false, 3, true, "");
-//        inputs.groceries = createInput(0, false, 4, true, "");
-//        inputs.dinners = createInput(0, false, 4, true, "");
-//        inputs.alcohol = createInput(0, false, 4, true, "");
-//        inputs.gifts = createInput(0, false, 4, true, "");
-//        inputs.clothes = createInput(0, false, 4, true, "");
-//        inputs.other = createInput(0, false, 4, true, "");
-//    }
-
-//    function createInput(val, isNonValueQuestion, pageNum, isVisible, ques, className) {
-//        var input = {
-//            value: val,
-//            specialQuestion: isNonValueQuestion || '',
-//            pageNumber: pageNum,
-//            visible: isVisible,
-//            classOption: className,
-//            question: ques
-//
-//        };
-//        return input;
-//    }
 
     function setUpQuestions(questions){
         var len = questions.length;
@@ -116,4 +82,4 @@
         var len = jsonArray.length;
         var pageNum = jsonArray[len].page;
     }
-}())
+})();

@@ -1,15 +1,4 @@
-var input = function(idVal,initVal,isValOrQuestion, isMonthly){
-    var id = idVal,
-        cost = initVal,
-        isValOrQues = isValOrQuestion,
-        monthly = isMonthly;
-
-    return function(){
-
-    }
-}
-
-var app = {
+var PerFinnApp = {
     inputs : {
         "preTaxSalary":0,
         "taxDeductibles":0,
