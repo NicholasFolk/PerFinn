@@ -85,17 +85,29 @@ var responses = {
             " losing <span class='blueBolded'>$" + sav + "</span> per year. That works out" +
             " to be <span class='blueBolded'>$" + (sav/12).toFixed(2) + "</span> per month. " +
             "It is possible that you are being too ambitious about your retirement savings, but more" +
-            " likely, you should look to find areas where you are overspending.";
+            " likely, you should look to find areas where you are overspending. <br/><br/> Perfinn" +
+            " is currently working on building personal profiles to provide you with a more detailed" +
+            " picture of how you are overspending and how you can invest your further. Keep checking" +
+            " back!";
     },
     saving: function(sav){
+        var rrsp = inputs['taxDeductibles'].toFixed(2);
+        var hasRRSP = '';
+        if (parseInt(rrsp,10) > 0) {
+            hasRRSP = "Keep in mind, this is in addition to your retirement savings of " +
+                "<span class='blueBolded'>$" + rrsp + "</span> per year. ";
+        }
         return "You are currently saving <span class='blueBolded'>$" + sav + "</span> per year. That works out" +
             " to be <span class='blueBolded'>$" + (sav/12).toFixed(2) + "</span> per month. " +
-            "Keep in mind, this is in addition to your retirement savings. You can visit our " +
+            hasRRSP + "You can visit our " +
             "<a id='intCalcLink' href='InterestCalc.html'>interest calculator</a> to find out how much you can accrue" +
-            " over a given amount of time. You may want to calculate ";
+            " over a given amount of time. Also keep in mind that this is a general overview, and while we strive " +
+            "to give you a closer view of your finances, there will always be rainy day situations and other unplanned" +
+            " expenses for which you should be prepared.";
     },
     breakingEven: function(sav){
-        return "breaking even " + sav;
+        return "You are breaking even. Are you sure you filled in the inputs? If you believe this is an error, " +
+            "please let us know by <a id='intCalcLink' href='AboutUs.html'>messaging us</a>.";
     },
     respond: function(func, sav) {
         var additionalResponse = '';
