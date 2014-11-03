@@ -287,5 +287,11 @@ function editPetFields(display){
     }
 }
 
+$(document).ready(function(){
+    $(".menu").hover(function() {
+        $(this).animate({'paddingRight': '10px'}, 'fast', 'swing');
+    }, function() {
+        $(this).animate({'paddingRight': '0px'}, 'fast', 'swing');
+    });
 
-
+})

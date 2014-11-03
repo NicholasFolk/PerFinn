@@ -199,3 +199,10 @@
     text-align: center;
     background-color: white;
 }
+
+#help{
+    font-family: helvetica;
+    font-size: 24px;
+    display: block;
+    float: right;
+}

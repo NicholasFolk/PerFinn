@@ -17,6 +17,7 @@
     <link href="cssFiles/backgroundColorScheme.css" rel="stylesheet" type="text/css" />
     <link href="cssFiles/testBackgrounds.css" rel="stylesheet" type="text/css" />
     <link href="cssFiles/introBox.css" rel="stylesheet" type="text/css" />
+    <script src="javascriptFiles/jquery-1.11.1.js"></script>
     <script src="javascriptFiles/buttonHandling.js"></script>
     <script src="javascriptFiles/PerfinnGeneralNonRefactored.js"></script>
     <script src="backend/Util.js"></script>
@@ -29,7 +30,7 @@
     <script src="javascriptFiles/InterestCalculator.js"></script>
 </head>
 <body>
-    <div id="introBox" onclick="closeWelcome()">
+    <div id="introBox" onclick="closeDialogs()">
     </div>
     <div id="introText">
         <p>
@@ -42,6 +43,11 @@
             Enjoy your visit!
             <br/>
             <button id="begin" onclick="closeWelcome()">Begin!</button>
+        </p>
+    </div>
+    <div id="helpText">
+        <p>
+           Fill out
         </p>
     </div>
     <div id="container">
@@ -201,6 +207,7 @@
                 <span class='st_pinterest_large' st_img="http://perfinn.com/images/PerfinnLogo.png" displayText='Pinterest'></span>
                 <span class='st_tumblr_large' displayText='Tumblr'></span>
             </div>
+            <div id="help"><a class='menu' style="font-size: 24px;" onclick="showHelp()">Help</a></div>
         </div>
     </div>
     </body>

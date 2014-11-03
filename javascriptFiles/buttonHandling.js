@@ -121,27 +121,42 @@ function reset() {
 }
 
 function openResetDialog(){
-    document.getElementById("introBox").style.display = 'block';
-    document.getElementById("resetTextBox").style.display = 'block';
+    show("resetTextBox");
 }
 
 function closeResetDialog(){
-    document.getElementById("introBox").style.display = 'none';
-    document.getElementById("resetTextBox").style.display = 'none';
+    close("resetTextBox");
 }
 
 function showWelcome(){
-    document.getElementById("introBox").style.display = 'block';
-    document.getElementById("introText").style.display = 'block';
+    show("introText");
 }
 
 function closeWelcome(){
+    close("introText");
+}
+
+function showHelp(){
+    show("helpText");
+}
+
+function closeHelp(){
+    close("helpText");
+}
+
+function show(boxType){
+    document.getElementById("introBox").style.display = 'block';
+    document.getElementById(boxType).style.display = 'block';
+}
+
+function close(boxType){
     document.getElementById("introBox").style.display = 'none';
-    document.getElementById("introText").style.display = 'none';
+    document.getElementById(boxType).style.display = 'none';
 }
 
 function closeDialogs(){
     closeWelcome();
+    closeHelp();
     closeResetDialog();
 }
 
