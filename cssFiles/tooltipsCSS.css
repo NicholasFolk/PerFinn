@@ -5,14 +5,14 @@
     border: 1px solid #548ff4;
     color: mediumblue;
     font-size: 11px;
-    width: 140px;
+    width: 180px;
     min-height: 10px;
     letter-spacing: 1px;
     line-height: 15px;
     position: absolute;
     text-align: center;
     top:0px;
-    left:20px;
+    left:22px;
     display:none;
     padding:5px 10px;
 
@@ -26,7 +26,7 @@
     border-bottom:1px solid #548ff4;
     border-right:1px solid #548ff4;
     background:white;
-    left: 3%;
+    left: 2%;
     top: 2%;
     margin-left:-10px;
     -moz-transform:rotate(135deg);
