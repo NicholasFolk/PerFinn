@@ -29,7 +29,9 @@ function calculateInterest(){
         cont = 0;
         result = calculateCompoundInterest(init,cont, percent, years, neverCont);
     }
-    updateResponseField(result);
+    var investment = getTotalInvestment();
+    var net = result - investment;
+    updateResponseField(result, investment, net);
 }
 
 function calculateCompoundInterest(init,cont, percent, time, freqObj) {
@@ -171,11 +173,27 @@ function changeFrequency(){
     }
 }
 
-function updateResponseField(interest){
+function updateResponseField(interest, investment, net){
     document.getElementById("response").innerHTML  = "The total amount accrued over " + interestInputs['timeLength'] + " years would be " +
-        "<span class='blueBolded'>$" + interest.toFixed(2) + "</span>. Note that this value " +
-        "includes your final contribution.";
+        "<span class='blueBolded'>$" + interest.toFixed(2) + "</span>. The total amount of money you invested was <span class='blueBolded'>$" +
+        investment.toFixed(2) + "</span>, netting you a gain of <span class='blueBolded'>$" + net.toFixed(2) + "</span>!";
 }
+
+function getTotalInvestment(){
+    var timeMultiplier = 0;
+    var cVal = 0;
+    var contFreq = interestInputs["contFrequency"];
+    if (contFreq === "yearly"){
+        timeMultiplier = 1;
+        cVal = interestInputs["yearlyContValue"];
+    } else if (contFreq === "monthly"){
+        timeMultiplier = 12;
+        cVal = interestInputs["monthlyContValue"];
+    }
+    return (interestInputs["initial"] + (cVal * timeMultiplier * interestInputs["timeLength"]));
+}
+
+
 
 function getFrequencyObject(){
     var frequencyString = document.getElementById("contFrequency").value;
