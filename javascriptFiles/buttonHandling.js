@@ -89,9 +89,10 @@ var convertNumToString = function(num) {
  * @param displayType
  */
 var changeDisplay = function(classString, displayType){
-    var array = document.getElementsByClassName(classString);
-    len = array.length;
-    for (var i = 0; i<len;i++) {
+    var array = document.getElementsByClassName(classString),
+        len = array.length,
+        i;
+    for (i = 0; i<len;i++) {
         array[i].style.display = displayType;
     }
 }

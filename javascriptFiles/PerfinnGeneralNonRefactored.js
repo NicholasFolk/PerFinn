@@ -91,8 +91,8 @@ var responses = {
             " back!";
     },
     saving: function(sav){
-        var rrsp = inputs['taxDeductibles'].toFixed(2);
-        var hasRRSP = '';
+        var rrsp = inputs['taxDeductibles'].toFixed(2),
+            hasRRSP = '';
         if (parseInt(rrsp,10) > 0) {
             hasRRSP = "Keep in mind, this is in addition to your retirement savings of " +
                 "<span class='blueBolded'>$" + rrsp + "</span> per year. ";
@@ -197,7 +197,6 @@ function calculateSavings(){
 function estimateTaxRate(){
     updateInputs();
     var afterTaxSalary = inputs["preTaxSalary"] - inputs["taxDeductibles"];
-    console.log(afterTaxSalary);
     if (afterTaxSalary >= 300000) {
         inputs["averageTaxRate"] = 40;
     } else if (afterTaxSalary >= 200000) {
@@ -215,10 +214,10 @@ function estimateTaxRate(){
 }
 
 function changeForm(){
-    var rentOrBuy = document.getElementById("property");
-    var valueOf = rentOrBuy.options[rentOrBuy.selectedIndex].value;
-    var eltArray;
-    var len;
+    var rentOrBuy = document.getElementById("property"),
+        valueOf = rentOrBuy.options[rentOrBuy.selectedIndex].value,
+        eltArray,
+        len;
     if (valueOf == "rent"){
         eltArray = document.getElementsByClassName("buy");
         len = eltArray.length;
@@ -247,9 +246,8 @@ function changeForm(){
 }
 
 function changeClassDisplay(cssClass, display){
-    var eltArray;
-    eltArray = document.getElementsByClassName(cssClass);
-    len = eltArray.length;
+    var eltArray = document.getElementsByClassName(cssClass),
+        len = eltArray.length;
     for (var i = 0; i<len;i++) {
         eltArray[i].style.display = display;
     }
@@ -261,30 +259,10 @@ function changeClassDisplay(cssClass, display){
 }
 
 function editCarFields(display){
-    var eltArray;
-    eltArray = document.getElementsByClassName("car");
-    len = eltArray.length;
-    for (var i = 0; i<len;i++) {
-        eltArray[i].style.display = display;
-    }
-    if (display == "none") {
-        inputs["car"] = false;
-    } else {
-        inputs["car"] = true;
-    }
+    changeClassDisplay("car", display);
 }
 function editPetFields(display){
-    var eltArray;
-    eltArray = document.getElementsByClassName("pet");
-    len = eltArray.length;
-    for (var i = 0; i<len;i++) {
-        eltArray[i].style.display = display;
-    }
-    if (display == "none") {
-        inputs["pet"] = false;
-    } else {
-        inputs["pet"] = true;
-    }
+    changeClassDisplay("pet", display);
 }
 
 $(document).ready(function(){

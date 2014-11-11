@@ -13,12 +13,15 @@ var interestInputs = {
 
 function calculateInterest(){
     updateInterestInputs();
-    var init = interestInputs["initial"];
-    var years = Math.floor(interestInputs["timeLength"]);
-    var percent = interestInputs["interestRate"]/100 + 1;
-    var cont;
-    var result;
-    var frequency = interestInputs["contFrequency"];
+    var init = interestInputs["initial"],
+        years = Math.floor(interestInputs["timeLength"]),
+        percent = interestInputs["interestRate"]/100 + 1,
+        frequency = interestInputs["contFrequency"],
+        cont,
+        result,
+        investment,
+        net;
+
     if (frequency === "yearly") {
         cont = interestInputs["yearlyContValue"];
         result = calculateCompoundInterest(init,cont, percent, years, yearlyCont);
@@ -29,8 +32,8 @@ function calculateInterest(){
         cont = 0;
         result = calculateCompoundInterest(init,cont, percent, years, neverCont);
     }
-    var investment = getTotalInvestment();
-    var net = result - investment;
+    investment = getTotalInvestment();
+    net = result - investment;
     updateResponseField(result, investment, net);
 }
 
@@ -157,8 +160,8 @@ function updateInterestInputs(){
 }
 
 function changeFrequency(){
-    var frequency = document.getElementById("contFrequency");
-    var valueOf = frequency.options[frequency.selectedIndex].value;
+    var frequency = document.getElementById("contFrequency"),
+        valueOf = frequency.options[frequency.selectedIndex].value;
     if (valueOf == "yearly") {
         changeDisplay('frequency','block');
         changeDisplay('yearly','block');
@@ -180,9 +183,10 @@ function updateResponseField(interest, investment, net){
 }
 
 function getTotalInvestment(){
-    var timeMultiplier = 0;
-    var cVal = 0;
-    var contFreq = interestInputs["contFrequency"];
+    var timeMultiplier = 0,
+        cVal = 0,
+        contFreq = interestInputs["contFrequency"];
+
     if (contFreq === "yearly"){
         timeMultiplier = 1;
         cVal = interestInputs["yearlyContValue"];
